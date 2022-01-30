@@ -1,6 +1,6 @@
-import { fireEvent, render } from "@testing-library/react";
+import { fireEvent, render, cleanup } from "../test-utils";
 import { act } from "react-test-renderer";
-import LoadingButton from "./LoadingButton";
+import LoadingButton from "../../src/components/LoadingButton";
 
 describe("Loading Button", () => {
   it("should render on the DOM", () => {
@@ -9,12 +9,9 @@ describe("Loading Button", () => {
     expect(button).toBeTruthy();
   });
 
-  it("should load when clicked", async() => {
-    act(async() => {
-      const { getByTestId } = render(<LoadingButton />);
-      const button = getByTestId("loadingButton");
-      fireEvent.click(button);
-      expect(button).innerHTML("Loading...");
-    })
+  it("should say Load More", () => {
+    const { getByTestId } = render(<LoadingButton />);
+    const button = getByTestId("loadingButton");
+    expect(button).toHaveTextContent("Load More");
   })
-})
+});
