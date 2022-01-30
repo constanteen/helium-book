@@ -1,9 +1,12 @@
 import { useEffect } from 'react';
 import { Col, Container, Row, Spinner } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
+import dynamic from 'next/dynamic';
+
 import LoadingButton from '../src/components/LoadingButton';
-import SinglePost from '../src/components/SinglePost';
 import { fetchMore, fetchPosts } from '../store/actions/actions';
+
+const SinglePost = dynamic(() => import ('../src/components/SinglePost'));
 
 export default function Home() {
 	const { posts, isLoading } = useSelector((state) => state.posts);

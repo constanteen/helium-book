@@ -1,11 +1,12 @@
 import Image from 'next/image';
 import Link from 'next/link';
+import dynamic from 'next/dynamic';
 import { useEffect } from 'react';
 import { Badge, Button, Col, Container, Row, Spinner } from 'react-bootstrap';
-import { useSelector } from 'react-redux';
-import { useDispatch } from 'react-redux';
-import RecommendedPosts from '../../src/components/RecommendedPosts';
+import { useSelector, useDispatch } from 'react-redux';
 import { fetchPost, removeSetPost } from '../../store/actions/actions';
+
+const RecommendedPosts = dynamic(() => import('../../src/components/RecommendedPosts'));
 
 export default function PostDetails({ id }) {
 	const {post, isLoading} = useSelector((state) => state.posts);
