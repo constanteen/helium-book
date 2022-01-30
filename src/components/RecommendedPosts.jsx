@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 import { Card } from "react-bootstrap";
 import { useSelector } from "react-redux";
 
@@ -9,7 +10,7 @@ const cardStyle = {
   textOverflow: "ellipsis", 
 }
 
-export default function RandomPosts() {
+export default function RecommendedPosts() {
   const { recommendedPosts } = useSelector(state => state.posts);
 
   return (
@@ -28,7 +29,7 @@ export default function RandomPosts() {
               alt={post.text}
             />
             <Card.Body>
-              <Card.Title style={cardStyle} className="text-break overflow-hidden">
+              <Card.Title style={cardStyle} as={Link} href={`/${post.id}`} className="text-break overflow-hidden">
                 {post.text}
               </Card.Title>
               <Card.Text>

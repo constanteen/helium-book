@@ -1,14 +1,15 @@
 import Image from 'next/image';
+import Link from 'next/link';
 import { useEffect } from 'react';
-import { Badge, Col, Container, Row, Spinner } from 'react-bootstrap';
+import { Badge, Button, Col, Container, Row, Spinner } from 'react-bootstrap';
 import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
-import RandomPosts from '../../src/components/RandomPosts';
+import RecommendedPosts from '../../src/components/RecommendedPosts';
 import { fetchPost, removeSetPost } from '../../store/actions/actions';
 
 export default function PostDetails({ id }) {
-	const dispatch = useDispatch();
 	const {post, isLoading} = useSelector((state) => state.posts);
+	const dispatch = useDispatch();
 
 	useEffect(() => {
 		dispatch(fetchPost(id));
@@ -47,7 +48,7 @@ export default function PostDetails({ id }) {
                 <div>
                   <p className="text-capitalize h3">{`${post.owner?.title}. ${post.owner?.firstName} ${post.owner?.lastName}`}</p>
                   <p>Likes: {post.likes}</p>
-                  <p>Follow on instagram: <a href={post.link} rel="noreferrer" target={'_blank'}>Click Here</a></p>
+                  <p>Follow on Instagram: <a href={post.link} rel="noreferrer" target={'_blank'}>Click Here</a></p>
                   <div className="d-flex">
                     {post.tags?.map((tag) => (<Badge pill bg="info" className="me-2" key={tag}>{tag}</Badge>))}
                   </div>
@@ -55,10 +56,11 @@ export default function PostDetails({ id }) {
                     Published: {new Date(post.publishDate).toDateString()}
                   </div>
                 </div>
+                <Button as={Link} href={"/"}>Back to Homepage</Button>
               </div>
             </Col>
             <Col xs={12} md={4}>
-              <RandomPosts />
+              <RecommendedPosts />
             </Col>
           </Row>
         </>
