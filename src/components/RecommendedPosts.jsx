@@ -19,8 +19,8 @@ export default function RecommendedPosts() {
         <p className="h3 text-center">Related Posts</p>
       </div>
       {
-        recommendedPosts && recommendedPosts.map((post) => (
-          <Card key={post.id} className="d-flex flex-row my-3">
+        recommendedPosts.length > 0 && recommendedPosts.map((post) => (
+          <Card key={post.id} data-testid="recommendedPost" className="d-flex flex-row my-3">
             <Image 
               src={post.image} 
               objectFit="cover"

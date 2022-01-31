@@ -1,5 +1,4 @@
-import { fireEvent, render, cleanup } from "../test-utils";
-import { act } from "react-test-renderer";
+import { render } from "../Utils/test-utils";
 import LoadingButton from "../../src/components/LoadingButton";
 
 describe("Loading Button", () => {

@@ -2,6 +2,7 @@ import { useStore } from '../store/store';
 import { Provider } from 'react-redux';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Head from 'next/head';
+import { Col, Row } from 'react-bootstrap';
 
 export default function MyApp({ Component, pageProps }) {
   const store = useStore(pageProps.initialReduxState);
@@ -14,6 +15,11 @@ export default function MyApp({ Component, pageProps }) {
         <link rel="icon" href="/favicon.ico" />
         <link rel="canonical" href="https://helium-book.vercel.app" />
       </Head>
+      <Row>
+				<Col>
+					<h1 data-testid="heading" className="text-center my-3 text-primary">Helium Book</h1>
+				</Col>
+			</Row>
       <Provider store={store}>
         <Component {...pageProps} />
       </Provider>
